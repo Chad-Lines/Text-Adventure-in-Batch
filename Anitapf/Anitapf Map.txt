@@ -1,0 +1,66 @@
+-------------------------------
+MAP OF THE ISLAND OF ANATAPF
+-------------------------------
+
+                         20 - 22
+                 18%- 19 +  
+                 |       21  
+16 - 15%-8 - 9 - 13*- 14                    N
+ |    \  |  /     |   /                     |
+17*    '-7-'   ,- 12-'                 W----+----E
+         |    /   |                         |
+         6*- 10 - 11                        S
+         |      
+         3
+         | 
+     1 - 2 - 4 - 5  
+
+* = village (destroyed or functioning)
+% = Contains sub-map
+	 
+ 1. Cave           12. desert
+ 2. Cavemouth      13. Werdenah*
+ 3. Forest         14. Cave2
+ 4. Beach1         15. Mountain%
+ 5. Beach2         16. Decent2
+ 6. Hiram*         17. Lieh-bahg*
+ 7. Canyon1        18. Caverns%
+ 8. Pass           19. Cliffs
+ 9. Descent        20. Fortress
+10. Swamp1         21. Lake
+11. Plains         22. Escape
+
+-------------------------------
+MAP OF HIRAM LOACTIONS:
+-------------------------------
+Map of BlackSmith Shop
+-------------------------------
+    1 - 2
+
+1. Workshop
+2. Storage
+
+Map of the Barnhouse
+-------------------------------
+
+     2 - 3
+     |
+     1 - 4
+
+1. Living Room
+2. Kitchen
+3. Cellar
+4. Bedroom
+
+Map of the Mill
+-------------------------------
+
+     1 - 3
+     |
+     2 
+
+1. Entrance
+2. Board Room
+3. Lumber Yard
+
+     

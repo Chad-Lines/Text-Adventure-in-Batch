@@ -1,0 +1,148 @@
+@echo off
+
+echo.
+echo You bend in close to a certain boulder, noticing its
+echo peculiar shape and seemingly organic design.
+echo.
+echo As you reach out and touch it, it moves! Suddenly
+echo you see it rise up, and realize that it was not a
+echo boulder at all, but a giant crab!
+echo.
+pause>nul
+set bf1=1
+
+:: Setting the Crab's Health
+set crabhealth=100
+:: Setting Crab abilities
+set /a crab_snap=%random% * 8 / 32768 + 1
+set /a crab_bite=%random% * 7 / 32768 + 2
+
+:: Setting Hero's Health
+set health=%health%
+:: Setting Hero's Abilities
+set /a slash_dmg=%random% * 10 / 32798 + 1
+set /a stab_dmg=%random% * 15 / 32798 + 5
+
+:Beach1-Fight-Hero
+if %sword%==0 goto No-Sword
+:: Setting Hero's Abilities
+set /a slash_dmg=%random% * 15 / 32798 + 5
+set /a stab_dmg=%random% * 20 / 32798 + 5
+:: Setting the chance of landing a stab
+set /a stab=0
+set /a stab_chance=%random% * 100 /32798 + 1
+if /I %stab_chance% LEQ 60 set stab=1
+cls
+echo.
+echo.
+echo Your Health is: %health%
+echo.
+echo The Crab's Health is: %crabhealth%
+echo --------------------------------
+echo.
+echo What would you like to do?
+echo.
+echo ATTACK       DAMAGE          CHANCE OF HIT
+echo -------------------------------------------
+echo SLASH         1-15            100  
+echo.
+echo STAB          5-20             60
+echo.   
+set /p hit= : 
+:: This section specifies the damage mechanics
+if /I %hit%==Slash set /a crabhealth=%crabhealth% - %slash_dmg%
+if /I %hit%==Slash echo.
+if /I %hit%==Slash echo You Slash at the Crab for %slash_dmg% damage!
+if /I %hit%==Stab if %stab%==1 set /a crabhealth=%crabhealth% - %stab_dmg%
+if /I %hit%==Stab if %stab%==1 echo.
+if /I %hit%==Stab if %stab%==1 echo You Stab the Crab for %stab_dmg% damage!
+if /I %hit%==Stab if %stab%==0 echo.
+if /I %hit%==Stab if %stab%==0 echo Your Stab missed!
+:: This section tests for invalid input 
+:: if /I "%hit%" NEQ "Slash" if /I "%hit%" NEQ "Stab" set spot=Beach1-Fight-Hero
+if /I "%hit%" NEQ "Slash" if /I "%hit%" NEQ "Stab" goto UNFOUND
+:: Determines if the Crab is dead or not
+if /I %crabhealth% LEQ 0 echo You have defeated the giant Crab
+if /I %crabhealth% LEQ 0 goto End
+echo.
+echo The Crab's Health is at: %crabhealth%
+echo.
+pause>nul
+if /I %hit%==Stab if %stab%==1 set /a swordhealth="%swordhealth%" - 3
+if /I %hit%==Slash set /a swordhealth="%swordhealth%" - 3
+if %swordhealth% LEQ 0 goto Sword-Fail
+goto Beach1-Fight-Crab
+
+:Beach1-Fight-Crab
+:: Here we're setting a random number between 1-10 which will be used
+:: to determine what type of attack the Crab does
+set /a crab_spell_num=%random% * 10 / 32768 + 1
+
+:: This resets the damage done by the mob's two spells
+:: The wolf_slash spell will do random damage between 1-5
+set /a crab_snap=%random% * 7 / 32768 + 3
+:: The wolf_charge spell will do random damage between 10-40
+set /a crab_bite=%random% * 9 / 32768 + 5
+
+:: This uses the random number to determine which attak the mob will
+:: use. Right now it's a 70/30 chance between them
+if /I %crab_spell_num% LEQ 7 set crab_attack=%crab_snap%
+if /I %crab_spell_num% GTR 7 set crab_attack=%crab_bite%
+
+cls
+echo.
+echo.
+echo Your Health is: %health%
+echo.
+echo The Crab's Health is: %crabhealth%
+echo --------------------------------
+echo.
+if /I %crab_attack%==%crab_snap% echo The Crab Snaps at you with it's massive claw for %crab_snap% damage!
+if /I %crab_attack%==%crab_snap% set /a health=%health% - %crab_snap%
+if /I %crab_attack%==%crab_bite% echo The Crab Bites you for %crab_bite% damage!
+if /I %crab_attack%==%crab_bite% set /a health=%health% - %crab_bite%
+echo.
+if %armor%==1 set /a health=%health% + 3
+if /I %health% LEQ 0 goto Dead
+if %armor%==1 echo Your Armor blocked 3 damage!
+echo Your Health is now: %health%
+echo.
+pause>nul
+if %armor%==1 set /a armorhealth=%armorhealth% - 3
+goto Beach1-Fight-Hero
+
+:Sword-Fail
+echo.
+echo Your sword has broken at the hilt. Without a means of
+echo protecting yourself, the giant Crab beats you to death
+echo with ease.
+echo.
+pause>nul
+goto Dead
+
+:No-Sword
+echo.
+echo Without a means of protecting yourself, the giant Crab 
+echo beats you to death with ease.
+echo.
+goto Dead
+
+:Dead
+echo.
+echo You have died. 
+echo.
+pause>nul
+exit
+
+:UNFOUND
+echo.
+echo.
+echo %go% is not valid
+echo.
+echo.
+pause>nul
+echo.
+goto Beach1-Fight-Hero
+
+:End
+
