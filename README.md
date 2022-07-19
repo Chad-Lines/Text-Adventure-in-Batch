@@ -1,7 +1,7 @@
-# TEST (ANITAPF)
+# Text Adventure in Batch
 
 ## About
-The very first game I tried to make was a text-adventure game written in Batch, of all things. I still go back and play from time to time, to be honest, but the code is so ... ughk, that I've largely abandon it.
+The very first game I tried to make was a text-adventure game written in Batch, of all things (sometime in early 2010s). I still go back and play from time to time, to be honest, but the code is so ... ughk, that I've largely abandon it.
 
 ## How To Play
 Getting the game into a play state is a little tricky for the uninitiated. Here's how to do it:<br>
